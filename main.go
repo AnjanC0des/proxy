@@ -28,6 +28,11 @@ func main() {
 			},
 		},
 	}).DialContext
+
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "text/html")
+		w.Write([]byte("<html><body><h1>Hello, World!</h1></body></html>"))
+	})
 	// Block YouTube and Instagram during specific hours
 	proxy.OnRequest(goproxy.DstHostIs(
 		"www.youtube.com")).DoFunc(
