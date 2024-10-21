@@ -30,8 +30,7 @@ func main() {
 	}).DialContext
 	// Block YouTube and Instagram during specific hours
 	proxy.OnRequest(goproxy.DstHostIs(
-		"www.youtube.com",
-		"www.instagram.com")).DoFunc(
+		"www.youtube.com")).DoFunc(
 		func(r *http.Request, ctx *goproxy.ProxyCtx) (*http.Request, *http.Response) {
 			currentHour := time.Now().Hour()
 			if currentHour >= 9 && currentHour <= 23 { // Block from 9 AM to 5 PM
