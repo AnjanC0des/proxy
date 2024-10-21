@@ -12,6 +12,7 @@ import (
 )
 
 func main() {
+	println("Proxy started i think.")
 	proxy := goproxy.NewProxyHttpServer()
 	proxy.Verbose = true
 	proxy.Tr.Proxy = func(req *http.Request) (*url.URL, error) {
