@@ -43,7 +43,12 @@ func main() {
     // Block YouTube during specific hours
     proxy.OnRequest(goproxy.DstHostIs("www.youtube.com")).DoFunc(
         func(r *http.Request, ctx *goproxy.ProxyCtx) (*http.Request, *http.Response) {
-            currentHour := time.Now().Hour()
+            location, err := time.LoadLocation("Asia/Kolkata")
+            if err != nil {
+                fmt.Println("Error:", err)
+                return
+            }
+            currentHour := time.Now().In(location).Hour()
             fmt.Printf("YouTube request detected at hour: %d\n", currentHour)
             if currentHour >= 9 && currentHour <= 23 {
                 return r, goproxy.NewResponse(r, 
