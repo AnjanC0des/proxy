@@ -46,7 +46,7 @@ func main() {
             location, err := time.LoadLocation("Asia/Kolkata")
             if err != nil {
                 fmt.Println("Error:", err)
-                return
+                return r,nil
             }
             currentHour := time.Now().In(location).Hour()
             fmt.Printf("YouTube request detected at hour: %d\n", currentHour)
